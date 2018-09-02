@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include <SDL_main.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 
 #include "GameObject.h"
 #include "Button.h"
@@ -89,9 +90,27 @@ int main(int argc, char **argv){
 
 	menuObjects.push_back(exit);
 	
-
 	// Setup Input Handler here for now, coz I need to test it.
 	MouseHandler *mH = new MouseHandler();
+
+
+	// Add font
+	TTF_Font *font = TTF_OpenFont("Assets/Roboto-Black.ttf", 16);
+	// Create a color for our text
+	SDL_Color textColour = { 0,0,0, 255 }; // RGBA
+	// Create surface using font , colour and desired output text
+	SDL_Surface *textSurface = TTF_RenderText_Blended(font, "Play Game", textColour);
+	// Conver Surgace to texture
+	SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+	// DOn;t need the surface no more
+	SDL_FreeSurface(textSurface);
+
+	// Setup rectangle to describe where to draw this text
+	SDL_Rect textDestination;
+	textDestination.x = 40;
+	textDestination.y = 670;
+	// TO get the width and ehight, query the surface
+	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
 
 
 	// Prep time stuff
@@ -128,12 +147,9 @@ int main(int argc, char **argv){
 
 		// Run updateMenu Function (Useless Comment)
 		updateMenu(menuObjects, deltaTime, mousePos);
-
-		play->checkIfHover(mousePos);
-		exit->checkIfHover(mousePos);
-
-		//SDL_RenderClear(renderer);
-		//SDL_RenderCopy(renderer, titleTexture, NULL, &titleRect);
+		
+		// Render textTexture
+		SDL_RenderCopy(renderer, textTexture, NULL, &textDestination);
 
 		// Present all our renderings to the window when you have enough drawing stuffs
 		SDL_RenderPresent(renderer);
@@ -152,6 +168,12 @@ int main(int argc, char **argv){
 
 // Add buttons on Menu Scene
 
+
+
+// Add Font then link it with button
+void addFont() {
+
+}
 
 // Calculate then return DeltaTime
 float calculateDeltaTime(Uint32 &lastUpdate) {
