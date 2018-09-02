@@ -13,106 +13,35 @@
 using namespace std;
 
 // Function Prototypes, just so we don't have a super messy main function
+int initializeSDL();
+void setupMenu();
 float calculateDeltaTime(Uint32 &);
-void checkInput();
 void updateMenu(list<GameObject*>, float, Vector);
 
-int main(int argc, char **argv){
-	// Initialise SDL with all the subsystem coz im lazy
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-	{
-		cout << "SDL failed to initialise" << endl;
-		return -1;
-	}
-	cout << "SDL successfully initialised!" << endl;
+// Global Variables - I think this is not a good thing
+	SDL_Window *window = NULL;
+	SDL_Renderer *renderer = NULL;
 
-	// Create window to render stuffs
-	// Resolution: 1600 * 900
-	// Screen Mode: Windowed
-	SDL_Window* window = SDL_CreateWindow("Shadow Tunnel", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		1600, 900, SDL_WINDOW_SHOWN); //for full screen use SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN
-
-	// Check if window work
-	if (window != NULL)
-		cout << "Window created!" << endl;
-	else
-	{
-		cout << "Window failed!" << endl;
-		return -1;
-	}
-
-	// Create renderer to ummm draw stuffs
-		//params: window to create renderer for, render driver index(-1, get first best match), flags for what renderer can handle
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	//did it work?
-	if (renderer != NULL){
-		cout << "renderer created!" << endl;
-	}
-	else
-	{
-		cout << "renderer failed!" << endl;
-		return -1;
-	}
-
-	// Set drawing color for renderer to draw background color
-	SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
-	SDL_RenderClear(renderer);
-
-
-
-
+	// Menu related
+	Button *playButton;
+	Button *exitButton;
+	
+	SDL_Texture *titleTexture, *playButtonTexture, *exitButtonTexture;
+	SDL_Rect playButtonRect, exitButtonRect;
 
 	// List of stuffs to render;
 	list<GameObject*> menuObjects;
+
+int main(int argc, char **argv){
+	// Call initializeSDL Function
+	initializeSDL();
 	
-	// Build Title
-	int w = 200;
-	int h = 100;
-	//SDL_Texture *titleTexture = IMG_LoadTexture(renderer, "Assets\Shadow_Tunnel_Title_1.png");
-	//SDL_QueryTexture(titleTexture, NULL, NULL, &w, &h);
+	// Create the game menu
+	setupMenu();
 
-	//SDL_Rect titleRect = { 400, 400, w, h};
-
-
-	// Create a stuffs here
-	// Buttom default is (350 * 70), But it also takes two params Button(w, h);
-	Button *play = new Button(400, 70);
-	play->setRenderer(renderer);
-	play->pos.x = 40;
-	play->pos.y = 670;
-
-	menuObjects.push_back(play);
-
-	Button *exit = new Button(400, 70);
-	exit->setRenderer(renderer);
-	exit->pos.x = 40;
-	exit->pos.y = 760;
-
-	menuObjects.push_back(exit);
-	
 	// Setup Input Handler here for now, coz I need to test it.
 	MouseHandler *mH = new MouseHandler();
-
-
-	// Add font
-	TTF_Font *font = TTF_OpenFont("Assets/Roboto-Black.ttf", 16);
-	// Create a color for our text
-	SDL_Color textColour = { 0,0,0, 255 }; // RGBA
-	// Create surface using font , colour and desired output text
-	SDL_Surface *textSurface = TTF_RenderText_Blended(font, "Play Game", textColour);
-	// Conver Surgace to texture
-	SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-	// DOn;t need the surface no more
-	SDL_FreeSurface(textSurface);
-
-	// Setup rectangle to describe where to draw this text
-	SDL_Rect textDestination;
-	textDestination.x = 40;
-	textDestination.y = 670;
-	// TO get the width and ehight, query the surface
-	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
-
-
+	
 	// Prep time stuff
 	Uint32 lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
 
@@ -149,7 +78,8 @@ int main(int argc, char **argv){
 		updateMenu(menuObjects, deltaTime, mousePos);
 		
 		// Render textTexture
-		SDL_RenderCopy(renderer, textTexture, NULL, &textDestination);
+		SDL_RenderCopy(renderer, playButtonTexture, NULL, &playButtonRect);
+		SDL_RenderCopy(renderer, exitButtonTexture, NULL, &exitButtonRect);
 
 		// Present all our renderings to the window when you have enough drawing stuffs
 		SDL_RenderPresent(renderer);
@@ -158,6 +88,8 @@ int main(int argc, char **argv){
 
 	
 	//cleanup
+	SDL_DestroyTexture(playButtonTexture);
+	SDL_DestroyTexture(exitButtonTexture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	//shut down sdl sub systems
@@ -166,14 +98,122 @@ int main(int argc, char **argv){
 	return 0;
 }
 
-// Add buttons on Menu Scene
+// Initialize SDL and Setup Window
+int initializeSDL() {
 
+	// Initialise SDL with all the subsystem coz im lazy
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+	{
+		cout << "SDL failed to initialise" << endl;
+		return -1;
+	}
+	cout << "SDL successfully initialised!" << endl;
 
+	// Create window to render stuffs
+	// Resolution: 1600 * 900
+	// Screen Mode: Windowed
+	window = SDL_CreateWindow("Shadow Tunnel", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		1600, 900, SDL_WINDOW_SHOWN); //for full screen use SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN
 
-// Add Font then link it with button
-void addFont() {
+	// Check if window work
+	if (window != NULL)
+		cout << "Window created!" << endl;
+	else
+	{
+		cout << "Window failed!" << endl;
+		return -1;
+	}
+
+	// Create renderer to ummm draw stuffs
+		//params: window to create renderer for, render driver index(-1, get first best match), flags for what renderer can handle
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	//did it work?
+	if (renderer != NULL) {
+		cout << "renderer created!" << endl;
+	}
+	else
+	{
+		cout << "renderer failed!" << endl;
+		return -1;
+	}
+
+	// Set drawing color for renderer to draw background color
+	SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
+	SDL_RenderClear(renderer);
+
+	// Initialize SDL_ttf
+	if (TTF_Init() != 0)
+	{
+		//if failed, complain about it
+		cout << "SDL TTF FAILED!" << endl;
+		system("pause");
+		SDL_Quit();
+		return -1;
+	}
+
+	// Initialize SDL_image 
+	if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+		cout << "sdl image did not load: " << IMG_GetError() << endl;
+		SDL_Quit();
+		system("pause");
+		return -1;
+	}
 
 }
+
+// Add buttons on Menu Scene
+void setupMenu() {
+	// Button default is (350 * 70), But it also takes two params Button(w, h);
+	playButton = new Button(400, 70);
+	playButton->setRenderer(renderer);
+	playButton->pos.x = 40;
+	playButton->pos.y = 670;
+
+	menuObjects.push_back(playButton);
+
+	exitButton = new Button(400, 70);
+	exitButton->setRenderer(renderer);
+	exitButton->pos.x = 40;
+	exitButton->pos.y = 760;
+
+	menuObjects.push_back(exitButton);
+
+	// Add play button font
+	TTF_Font *playFont = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 36);
+		// Create a color for our text
+	SDL_Color playTextColour = { 255, 255, 255, 0 }; // RGBA
+		// Create surface using font , colour and desired output text
+	SDL_Surface *playTextSurface = TTF_RenderText_Blended(playFont, "Play Game", playTextColour);
+		// Conver Surgace to texture
+	playButtonTexture = SDL_CreateTextureFromSurface(renderer, playTextSurface);
+		// DOn;t need the surface no more
+	SDL_FreeSurface(playTextSurface);
+
+		// Setup rectangle to describe where to draw this text
+	playButtonRect.x = 70;
+	playButtonRect.y = 685;
+		// TO get the width and ehight, query the surface
+	SDL_QueryTexture(playButtonTexture, NULL, NULL, &playButtonRect.w, &playButtonRect.h);
+
+	// Add exit button font
+	TTF_Font *exitFont = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 36);
+	// Create a color for our text
+	SDL_Color exitTextColour = { 255, 255, 255, 0 }; // RGBA
+		// Create surface using font , colour and desired output text
+	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(exitFont, "Exit Game", exitTextColour);
+	// Conver Surgace to texture
+	exitButtonTexture = SDL_CreateTextureFromSurface(renderer, exitTextSurface);
+	// DOn;t need the surface no more
+	SDL_FreeSurface(exitTextSurface);
+
+	// Setup rectangle to describe where to draw this text
+	exitButtonRect.x = 70;
+	exitButtonRect.y = 775;
+	// TO get the width and ehight, query the surface
+	SDL_QueryTexture(exitButtonTexture, NULL, NULL, &exitButtonRect.w, &exitButtonRect.h);
+
+}
+
 
 // Calculate then return DeltaTime
 float calculateDeltaTime(Uint32 &lastUpdate) {
