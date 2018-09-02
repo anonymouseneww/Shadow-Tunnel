@@ -20,11 +20,11 @@ void Button::draw(bool _ifHover) {
 	SDL_Rect button = { pos.x, pos.y, w, h };
 
 	if (_ifHover) {
-		SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
+		SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255);
 		SDL_RenderFillRect(renderer, &button);
 	}
 	else {
-		SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255);
+		SDL_SetRenderDrawColor(renderer, 25, 25, 25, 255);
 		SDL_RenderFillRect(renderer, &button);
 	}
 
