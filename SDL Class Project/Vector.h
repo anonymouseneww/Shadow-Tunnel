@@ -7,9 +7,8 @@ class Vector
 {
 public:
 	Vector();
-	Vector(float, float);
+	Vector(int, int);
 
-	float x;
-	float y;
+	int x, y;
 private:
 };

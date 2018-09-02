@@ -15,6 +15,7 @@ public:
 
 	virtual void update(float);
 	virtual void updateMovement(float);
-	virtual void draw();
+	virtual void draw(bool);
+	virtual bool checkIfHover(Vector);
 
 };

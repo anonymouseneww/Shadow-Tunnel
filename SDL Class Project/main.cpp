@@ -14,7 +14,7 @@ using namespace std;
 // Function Prototypes, just so we don't have a super messy main function
 float calculateDeltaTime(Uint32 &);
 void checkInput();
-void updateMenu(list<GameObject*>, float);
+void updateMenu(list<GameObject*>, float, Vector);
 
 int main(int argc, char **argv){
 	// Initialise SDL with all the subsystem coz im lazy
@@ -26,10 +26,10 @@ int main(int argc, char **argv){
 	cout << "SDL successfully initialised!" << endl;
 
 	// Create window to render stuffs
-	// Resolution: 1920 * 1080
+	// Resolution: 1600 * 900
 	// Screen Mode: Windowed
 	SDL_Window* window = SDL_CreateWindow("Shadow Tunnel", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		1024, 768, SDL_WINDOW_SHOWN); //for full screen use SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN
+		1600, 900, SDL_WINDOW_SHOWN); //for full screen use SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN
 
 	// Check if window work
 	if (window != NULL)
@@ -74,12 +74,25 @@ int main(int argc, char **argv){
 
 
 	// Create a stuffs here
-	Button *button1 = new Button();
-	button1->setRenderer(renderer);
-	button1->pos.x = 40;
-	button1->pos.y = 40;
+	// Buttom default is (350 * 70), But it also takes two params Button(w, h);
+	Button *play = new Button(400, 70);
+	play->setRenderer(renderer);
+	play->pos.x = 40;
+	play->pos.y = 670;
 
-	menuObjects.push_back(button1);
+	menuObjects.push_back(play);
+
+	Button *exit = new Button(400, 70);
+	exit->setRenderer(renderer);
+	exit->pos.x = 40;
+	exit->pos.y = 760;
+
+	menuObjects.push_back(exit);
+	
+
+	// Setup Input Handler here for now, coz I need to test it.
+	MouseHandler *mH = new MouseHandler();
+
 
 	// Prep time stuff
 	Uint32 lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
@@ -109,9 +122,15 @@ int main(int argc, char **argv){
 			}
 		}
 
+		// Monitor Mouse Coordinate
+		Vector mousePos = mH->getMouseState();
+		cout << "  Mouse Coordinate (" << mousePos.x << ", " << mousePos.y << ")\n";
 
 		// Run updateMenu Function (Useless Comment)
-		updateMenu(menuObjects, deltaTime);
+		updateMenu(menuObjects, deltaTime, mousePos);
+
+		play->checkIfHover(mousePos);
+		exit->checkIfHover(mousePos);
 
 		//SDL_RenderClear(renderer);
 		//SDL_RenderCopy(renderer, titleTexture, NULL, &titleRect);
@@ -131,6 +150,9 @@ int main(int argc, char **argv){
 	return 0;
 }
 
+// Add buttons on Menu Scene
+
+
 // Calculate then return DeltaTime
 float calculateDeltaTime(Uint32 &lastUpdate) {
 	// Get difference between currentTime and lastUpdate Time
@@ -146,11 +168,10 @@ float calculateDeltaTime(Uint32 &lastUpdate) {
 	return dt;
 }
 
-
 // Update stuffs in menuObjects list
-void updateMenu(list<GameObject*> _menuObjects, float _dt) {
+void updateMenu(list<GameObject*> _menuObjects, float _dt, Vector _mousePos) {
 	for (GameObject *mo : _menuObjects) {
 		mo->update(_dt);
-		mo->draw();
+		mo->draw(mo->checkIfHover(_mousePos));
 	}
 }

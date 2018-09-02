@@ -6,7 +6,7 @@ Vector::Vector() {
 
 }
 
-Vector::Vector(float _x, float _y) {
+Vector::Vector(int _x, int _y) {
 	this->x = _x;
 	this->y = _y;
 

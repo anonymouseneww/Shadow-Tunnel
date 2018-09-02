@@ -14,6 +14,10 @@ void GameObject::updateMovement(float _dt) {
 
 }
 
-void GameObject::draw() {
+void GameObject::draw(bool) {
 	//nada
+}
+
+bool GameObject::checkIfHover(Vector _mousePos) {
+	return 0;
 }
