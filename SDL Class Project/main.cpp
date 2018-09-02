@@ -11,6 +11,7 @@
 
 using namespace std;
 
+// Function Prototypes, just so we don't have a super messy main function
 float calculateDeltaTime(Uint32 &);
 void checkInput();
 void updateMenu(list<GameObject*>, float);
