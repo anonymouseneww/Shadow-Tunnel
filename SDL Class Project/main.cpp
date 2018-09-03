@@ -27,8 +27,8 @@ void showIncompleteMsg(bool);
 	// Menu related
 	Button *playButton, *exitButton, *okayButton;
 	
-	SDL_Texture *backgroundTexture, *titleTexture, *playButtonTexture, *exitButtonTexture, *okayButtonTexture, *incompleteButtonTexture;
-	SDL_Rect backgroundRect, titleRect, playButtonRect, exitButtonRect, incompleteRect, okayButtonRect, incompleteButtonRect;
+	SDL_Texture *backgroundTexture, *titleTexture, *playButtonTexture, *exitButtonTexture , *incompleteButtonTexture;
+	SDL_Rect backgroundRect, titleRect, playButtonRect, exitButtonRect, incompleteRect, incompleteButtonRect;
 
 	// List of stuffs to render;
 	list<GameObject*> menuObjects;
