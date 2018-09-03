@@ -71,18 +71,6 @@ int main(int argc, char **argv){
 				}
 			}
 
-			// Close Incomplete Game Message when click Okay Button
-			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT && incompleteFlag == true) {
-				// But was it clicked within hero region?
-				if (event.button.x >= okayButton->pos.x && event.button.x <= okayButton->pos.x + 100
-					&&
-					event.button.y >= okayButton->pos.y && event.button.y <= okayButton->pos.y + 40) {
-					incompleteFlag = false;
-
-					menuObjects.remove(okayButton);
-				}
-			}
-
 			// prompt message when click on "Play Game"
 			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 				// But was it clicked within hero region?
@@ -126,7 +114,6 @@ int main(int argc, char **argv){
 
 		if (incompleteFlag) {
 			SDL_RenderCopy(renderer, incompleteButtonTexture, NULL, &incompleteButtonRect);
-			SDL_RenderCopy(renderer, okayButtonTexture, NULL, &okayButtonRect);
 		}
 
 		// Present all our renderings to the window when you have enough drawing stuffs
@@ -140,7 +127,6 @@ int main(int argc, char **argv){
 	SDL_DestroyTexture(playButtonTexture);
 	SDL_DestroyTexture(exitButtonTexture);
 	SDL_DestroyTexture(incompleteButtonTexture);
-	SDL_DestroyTexture(okayButtonTexture);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	//shut down sdl sub systems
@@ -316,17 +302,9 @@ void updateMenu(list<GameObject*> _menuObjects, float _dt, Vector _mousePos) {
 void showIncompleteMsg(bool _incompleteFlag) {
 	// Prompt incomplete message - NOT FINISHED YET!!!
 	if (_incompleteFlag) {
-		incompleteRect = { 520, 390, 550, 120 };
-		SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255);
+		incompleteRect = { 550, 390, 550, 70 };
+		SDL_SetRenderDrawColor(renderer, 25, 25, 25, 255);
 		SDL_RenderFillRect(renderer, &incompleteRect);
-
-		okayButton = new Button(100, 40);
-		okayButton->setRenderer(renderer);
-		okayButton->pos.x = 965;
-		okayButton->pos.y = 460;
-
-		// Add okayButton to the list - This is the broken bit since it will keeps on push_back to the list in the look
-		menuObjects.push_back(okayButton);
 
 		// Add exit button font
 		TTF_Font *incompleteFont = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 28);
@@ -340,29 +318,9 @@ void showIncompleteMsg(bool _incompleteFlag) {
 		SDL_FreeSurface(incompleteTextSurface);
 
 		// Setup rectangle to describe where to draw this text
-		incompleteButtonRect.x = 540;
+		incompleteButtonRect.x = 570;
 		incompleteButtonRect.y = 400;
 		// TO get the width and ehight, query the surface
 		SDL_QueryTexture(incompleteButtonTexture, NULL, NULL, &incompleteButtonRect.w, &incompleteButtonRect.h);
-
-
-
-		// Add okay button font
-		TTF_Font *okayFont = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 24);
-		// Create a color for our text
-		SDL_Color okayTextColour = { 220, 220, 220, 0 }; // RGBA
-			// Create surface using font , colour and desired output text
-		SDL_Surface *okayTextSurface = TTF_RenderText_Blended(okayFont, "Okay : (", okayTextColour);
-		// Conver Surgace to texture
-		okayButtonTexture = SDL_CreateTextureFromSurface(renderer, okayTextSurface);
-		// DOn;t need the surface no more
-		SDL_FreeSurface(okayTextSurface);
-
-		// Setup rectangle to describe where to draw this text
-		okayButtonRect.x = 975;
-		okayButtonRect.y = 465;
-		// TO get the width and ehight, query the surface
-		SDL_QueryTexture(okayButtonTexture, NULL, NULL, &okayButtonRect.w, &okayButtonRect.h);
-
 	}
 }
