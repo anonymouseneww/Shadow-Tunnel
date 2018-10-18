@@ -13,30 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Globals">
+      <UniqueIdentifier>{95be1362-4b3a-44af-9616-b154960f76b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Globals">
+      <UniqueIdentifier>{dc395ea8-4bb4-4554-b873-021e99c2d5d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector.cpp">
+    <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files\Globals</Filter>
     </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Resource Files\Globals</Filter>
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files\Globals</Filter>
     </ClCompile>
     <ClCompile Include="MouseHandler.cpp">
+      <Filter>Resource Files\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>Resource Files\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,23 +56,29 @@
     <ClInclude Include="MenuScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Globals</Filter>
+    </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseHandler.h">
+      <Filter>Header Files\Globals</Filter>
     </ClInclude>
     <ClInclude Include="Vector.h">
+      <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Title.h">
+    <ClInclude Include="GameSceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Globals</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
