@@ -2,8 +2,8 @@
 #include <iostream>
 
 Button::Button() {
-	this->w = 350;
-	this->h = 70;
+	this->w = 320;
+	this->h = 60;
 }
 
 Button::Button(int _w, int _h) {
@@ -33,11 +33,8 @@ void Button::draw(bool _ifHover) {
 // Check if the mouse is over the button
 bool Button::checkIfHover(Vector _MousePos) {
 	if (_MousePos.x > pos.x && _MousePos.x < (pos.x + w) && _MousePos.y > pos.y && _MousePos.y < (pos.y + h)) {
-		cout << "  Mouse in the box!!\n";
 		return true;
-	}
-	else {
+	}	else {
 		return false;
 	}
-
 }

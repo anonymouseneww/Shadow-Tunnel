@@ -10,12 +10,10 @@
 #include "GameObject.h"
 #include "Button.h"
 
-#include "LevelSelection.h"
-
-class MenuScene : public GameScene {
+class LevelSelection : public GameScene {
 public:
-	MenuScene();
-	~MenuScene();
+	LevelSelection();
+	~LevelSelection();
 
 	//override those abstract methods inherited from GameScene
 	virtual void update();
@@ -23,17 +21,17 @@ public:
 	virtual bool onEnter();
 	virtual bool onExit();
 	virtual string getStateID() {
-		return "MenuScene";
+		return "LevelSelectionScene";
 	}
 
 private:
-	Button *playButton, *leaderboardButton, *exitButton;
+	Button *lvl1Button, *lvl2Button, *lvl3Button, *backButton;
 
 	TTF_Font *font;
 	SDL_Color fontColor;
 
-	SDL_Texture *backgroundTexture, *titleTexture, *playButtonTexture, *leaderboardButtonTexture, *exitButtonTexture;
-	SDL_Rect backgroundRect, titleRect, playButtonRect, leaderboardButtonRect, exitButtonRect;
+	SDL_Texture *backgroundTexture, *titleTexture, *lvl1ButtonTexture, *lvl2ButtonTexture, *lvl3ButtonTexture, *backButtonTexture;
+	SDL_Rect backgroundRect, titleRect, lvl1ButtonRect, lvl2ButtonRect, lvl3ButtonRect, backButtonRect;
 
 	// List of stuffs to render;
 	list<GameObject*> renderObjects;
