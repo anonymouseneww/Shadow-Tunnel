@@ -19,6 +19,18 @@
     <Filter Include="Resource Files\Globals">
       <UniqueIdentifier>{dc395ea8-4bb4-4554-b873-021e99c2d5d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Scenes">
+      <UniqueIdentifier>{bc290e94-dfb0-4f65-8b05-0911971e2fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{21a093b1-1ce9-43bc-ae7a-747fa6dc2cfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Scenes\Levels">
+      <UniqueIdentifier>{c5ee88a1-1277-4613-9d6b-516b34b8c7fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes\Levels">
+      <UniqueIdentifier>{b91314c1-236d-4a41-a0b9-960e047af0e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -39,23 +51,29 @@
     <ClCompile Include="Vector.cpp">
       <Filter>Resource Files\Globals</Filter>
     </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Globals.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files\Globals</Filter>
     </ClCompile>
     <ClCompile Include="GameSceneManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Resource Files\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Resource Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelSelection.cpp">
+      <Filter>Resource Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LeaderboardScene.cpp">
+      <Filter>Resource Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelTemplate.cpp">
+      <Filter>Resource Files\Scenes\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MenuScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Header Files\Globals</Filter>
     </ClInclude>
@@ -68,17 +86,29 @@
     <ClInclude Include="Vector.h">
       <Filter>Header Files\Globals</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameSceneManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputHandler.h">
       <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSceneManager.h">
+      <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelSelection.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderboardScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelTemplate.h">
+      <Filter>Header Files\Scenes\Levels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
