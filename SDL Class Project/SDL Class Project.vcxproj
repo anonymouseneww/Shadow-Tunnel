@@ -41,8 +41,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\wulia\Documents\Repos\Shadow-Tunnel\SDL2_2015\include;E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\wulia\Documents\Repos\Shadow-Tunnel\SDL2_2015\lib\x86;E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\include;$(IncludePath)</IncludePath>

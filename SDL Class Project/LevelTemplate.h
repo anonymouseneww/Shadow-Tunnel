@@ -20,13 +20,9 @@ public:
 	virtual void render();
 	virtual bool onEnter();
 	virtual bool onExit();
-	virtual string getStateID() {
-		return "LevelTemplate";
-	}
+	virtual string getStateID() { return "LevelTemplate"; }
 
 private:
-
-
 	// List of stuffs to render;
 	list<GameObject*> renderObjects;
 

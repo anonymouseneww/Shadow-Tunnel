@@ -126,6 +126,8 @@ void LevelSelection::update() {
 				&&
 				event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 70) {
 				// Switch to "Level1" Scene
+				// Testing Purpose
+				Globals::gsm.pushScene(new LevelTemplate());
 			}
 		}
 
