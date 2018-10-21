@@ -14,6 +14,8 @@
 #include "LevelTemplate.h"
 #include "PlayerSelectionScene.h"
 
+#include "LevelTemplate.h"
+
 class LevelSelection : public GameScene {
 public:
 	LevelSelection();
@@ -24,9 +26,7 @@ public:
 	virtual void render();
 	virtual bool onEnter();
 	virtual bool onExit();
-	virtual string getStateID() {
-		return "LevelSelectionScene";
-	}
+	virtual string getStateID() { return "LevelSelectionScene"; }
 
 private:
 	Button *lvl1Button, *lvl2Button, *lvl3Button, *backButton;

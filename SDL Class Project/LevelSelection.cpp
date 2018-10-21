@@ -121,6 +121,11 @@ void LevelSelection::update() {
 				// Push scene for player to choose character
 				//Globals::gsm.pushScene(new PlayerSelectionScene());
 				// then push anothe scene for level
+=======
+				event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 70) {
+				// Switch to "Level1" Scene
+				// Testing Purpose
+>>>>>>> f72dddcceebaa5d641626acc35221fe5d3ae6b98
 				Globals::gsm.pushScene(new LevelTemplate());
 			}
 		}
