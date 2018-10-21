@@ -106,9 +106,9 @@ void MenuScene::update() {
 
 		// Switch to Level Selection when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= playButton->pos.x && event.button.x <= playButton->pos.x + 400
+			if (event.button.x >= playButton->pos.x && event.button.x <= playButton->pos.x + 320
 				&&
-				event.button.y >= playButton->pos.y && event.button.y <= playButton->pos.y + 70) {
+				event.button.y >= playButton->pos.y && event.button.y <= playButton->pos.y + 60) {
 				// Switch to "Level Selection" Scene
 				Globals::gsm.pushScene(new LevelSelection());
 			}
@@ -116,9 +116,9 @@ void MenuScene::update() {
 		
 		// Switch to Leaderboard Scene when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= leaderboardButton->pos.x && event.button.x <= leaderboardButton->pos.x + 400
+			if (event.button.x >= leaderboardButton->pos.x && event.button.x <= leaderboardButton->pos.x + 320
 				&&
-				event.button.y >= leaderboardButton->pos.y && event.button.y <= leaderboardButton->pos.y + 70) {
+				event.button.y >= leaderboardButton->pos.y && event.button.y <= leaderboardButton->pos.y + 60) {
 				// Switch to "Leaderboard" Scene
 				Globals::gsm.pushScene(new LeaderboardScene());
 			}
@@ -126,9 +126,9 @@ void MenuScene::update() {
 
 		// Exit game when clicked "Exit Game" button
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= exitButton->pos.x && event.button.x <= exitButton->pos.x + 400
+			if (event.button.x >= exitButton->pos.x && event.button.x <= exitButton->pos.x + 320
 				&&
-				event.button.y >= exitButton->pos.y && event.button.y <= exitButton->pos.y + 70) {
+				event.button.y >= exitButton->pos.y && event.button.y <= exitButton->pos.y + 60) {
 				Globals::quitGame = true;
 				Globals::gsm.popScene();
 				return;

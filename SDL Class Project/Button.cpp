@@ -19,12 +19,14 @@ Button::~Button() {
 void Button::draw(bool _ifHover) {
 	SDL_Rect button = { pos.x, pos.y, w, h };
 
+	// Setting the render mode to Blend to it can draw transparent color
+	SDL_SetRenderDrawBlendMode(Globals::renderer, SDL_BLENDMODE_BLEND);
+
 	if (_ifHover) {
-		SDL_SetRenderDrawColor(renderer, 40, 40, 40, 128);
+		SDL_SetRenderDrawColor(renderer, 40, 40, 40, 200);
 		SDL_RenderFillRect(renderer, &button);
-	}
-	else {
-		SDL_SetRenderDrawColor(renderer, 25, 25, 25, 128);
+	} else {
+		SDL_SetRenderDrawColor(renderer, 25, 25, 25, 200);
 		SDL_RenderFillRect(renderer, &button);
 	}
 
@@ -34,7 +36,7 @@ void Button::draw(bool _ifHover) {
 bool Button::checkIfHover(Vector _MousePos) {
 	if (_MousePos.x > pos.x && _MousePos.x < (pos.x + w) && _MousePos.y > pos.y && _MousePos.y < (pos.y + h)) {
 		return true;
-	}	else {
+	} else {
 		return false;
 	}
 }

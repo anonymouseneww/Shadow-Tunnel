@@ -3,15 +3,15 @@
 Player::Player(int animationNumber, int x, int y) {
 	switch (animationNumber) {
 	case 0:
-		animatedSurface = IMG_Load("Assets\Character\GoldGuy.png");
+		animatedSurface = IMG_Load("Assets/Character/GoldGuy.png");
 		break;
 
 	case 1:
-		animatedSurface = IMG_Load("Assets\Character\OldKing.png");
+		animatedSurface = IMG_Load("Assets/Character/OldKing.png");
 		break;
 
 	case 2:
-		animatedSurface = IMG_Load("Assets\Character\GreenZeldaGuy.png");
+		animatedSurface = IMG_Load("Assets/Character/GreenZeldaGuy.png");
 		break;
 	}
 
@@ -30,6 +30,10 @@ Player::Player(int animationNumber, int x, int y) {
 
 Player::~Player() {}
 
+void Player::setAnimation(Animation *animation) {
+	this->animation = animation;
+}
+
 void Player::update(float dt) {
 	// Check horizontal direction
 	if (vel.x > 0) {
@@ -45,15 +49,12 @@ void Player::update(float dt) {
 	animation->update(dt);
 }
 
-void Player::draw() {
+void Player::draw(bool) {
 	if (animation != NULL) {
 		if (faceRight)
 			animation->draw(pos.x, pos.y);
 		else
 			animation->draw(pos.x, pos.y, true);
-
-
-
 	}
 }
 

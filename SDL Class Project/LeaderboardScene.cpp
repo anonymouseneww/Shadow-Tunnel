@@ -27,7 +27,7 @@ LeaderboardScene::LeaderboardScene() {
 	SDL_QueryTexture(titleTexture, NULL, NULL, &titleRect.w, &titleRect.h);
 
 	// Add back button font --------------------------------------------------------------------------------------------------------------------------------------------------------
-	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "Back to Menu", fontColor);
+	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "Back", fontColor);
 	backButtonTexture = SDL_CreateTextureFromSurface(Globals::renderer, exitTextSurface);
 	SDL_FreeSurface(exitTextSurface);
 
@@ -56,11 +56,11 @@ void LeaderboardScene::update() {
 			return;
 		}
 
-		// Exit game when clicked "Exit Game" button
+		// Go back to last scene when "Back" is clicked.
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= backButton->pos.x && event.button.x <= backButton->pos.x + 400
+			if (event.button.x >= backButton->pos.x && event.button.x <= backButton->pos.x + 320
 				&&
-				event.button.y >= backButton->pos.y && event.button.y <= backButton->pos.y + 70) {
+				event.button.y >= backButton->pos.y && event.button.y <= backButton->pos.y + 60) {
 				Globals::gsm.popScene();
 				return;
 			}

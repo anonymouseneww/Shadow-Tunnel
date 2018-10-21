@@ -15,7 +15,7 @@ public:
 
 	void setAnimation(Animation *animation);
 	virtual void update(float dt);
-	virtual void draw();
+	virtual void draw(bool);
 
 private:
 	SDL_Surface *animatedSurface;

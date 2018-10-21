@@ -10,9 +10,11 @@
 #include "GameObject.h"
 #include "Button.h"
 
+#include "Player.h"
+
 class LevelTemplate : public GameScene {
 public:
-	LevelTemplate();
+	LevelTemplate(int);
 	~LevelTemplate();
 
 	//override those abstract methods inherited from GameScene
@@ -23,13 +25,14 @@ public:
 	virtual string getStateID() { return "LevelTemplate"; }
 
 private:
-<<<<<<< HEAD
-	SDL_Rect backgroundRect;
+	Player *player;
 
-=======
->>>>>>> f72dddcceebaa5d641626acc35221fe5d3ae6b98
 	// List of stuffs to render;
-	list<GameObject*> renderObjects;
+	list<GameObject*> lvlObjects;
+
+	// Time related stuffs
+	Uint32 lastUpdate;
+	float dt;
 
 	// Input Handler for MenuScene
 	MouseHandler *mouseHandler;

@@ -64,7 +64,7 @@ int initialize() {
 		cout << "renderer failed!" << endl;
 		return -1;
 	}
-	
+
 	// Point Global renderer to our renderer
 	Globals::renderer = renderer;
 

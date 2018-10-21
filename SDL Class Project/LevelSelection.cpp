@@ -115,27 +115,19 @@ void LevelSelection::update() {
 
 		// Switch to Level 1 when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= lvl1Button->pos.x && event.button.x <= lvl1Button->pos.x + 370
-				&&
-<<<<<<< HEAD
-				event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 50) {
-				// Push scene for player to choose character
-				//Globals::gsm.pushScene(new PlayerSelectionScene());
-				// then push anothe scene for level
-=======
-				event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 70) {
+			if (event.button.x >= lvl1Button->pos.x && event.button.x <= lvl1Button->pos.x + 320
+				&& event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 60) {
 				// Switch to "Level1" Scene
 				// Testing Purpose
->>>>>>> f72dddcceebaa5d641626acc35221fe5d3ae6b98
-				Globals::gsm.pushScene(new LevelTemplate());
+				Globals::gsm.pushScene(new LevelTemplate(0));
 			}
 		}
 
 		// Switch to Level 2 when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= lvl2Button->pos.x && event.button.x <= lvl2Button->pos.x + 370
+			if (event.button.x >= lvl2Button->pos.x && event.button.x <= lvl2Button->pos.x + 320
 				&&
-				event.button.y >= lvl2Button->pos.y && event.button.y <= lvl2Button->pos.y + 50) {
+				event.button.y >= lvl2Button->pos.y && event.button.y <= lvl2Button->pos.y + 60) {
 				// Push scene for player to choose character
 				//Globals::gsm.pushScene(new PlayerSelectionScene());
 				// then push anothe scene for level
@@ -144,9 +136,9 @@ void LevelSelection::update() {
 
 		// Switch to Level 3 when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= lvl3Button->pos.x && event.button.x <= lvl3Button->pos.x + 370
+			if (event.button.x >= lvl3Button->pos.x && event.button.x <= lvl3Button->pos.x + 320
 				&&
-				event.button.y >= lvl3Button->pos.y && event.button.y <= lvl3Button->pos.y + 50) {
+				event.button.y >= lvl3Button->pos.y && event.button.y <= lvl3Button->pos.y + 60) {
 				// Push scene for player to choose character
 				//Globals::gsm.pushScene(new PlayerSelectionScene());
 				// then push anothe scene for level
@@ -155,9 +147,9 @@ void LevelSelection::update() {
 
 		// Go back to last scene when clicked "Back" button
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= backButton->pos.x && event.button.x <= backButton->pos.x + 370
+			if (event.button.x >= backButton->pos.x && event.button.x <= backButton->pos.x + 320
 				&&
-				event.button.y >= backButton->pos.y && event.button.y <= backButton->pos.y + 50) {
+				event.button.y >= backButton->pos.y && event.button.y <= backButton->pos.y + 60) {
 				Globals::gsm.popScene();
 				return;
 			}

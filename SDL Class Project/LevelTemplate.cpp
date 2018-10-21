@@ -1,20 +1,24 @@
 #include "LevelTemplate.h"
 
-LevelTemplate::LevelTemplate() {
-<<<<<<< HEAD
-	// Setup level background
-	backgroundRect = {1600, 900, 0, 0};
+LevelTemplate::LevelTemplate(int levelNum) { 
+	// Setting up player in the level
+	player = new Player(levelNum, 20, 20);
+	player->setRenderer(Globals::renderer);
+	lvlObjects.push_back(player);
 
-=======
-	// Set the background to black
->>>>>>> f72dddcceebaa5d641626acc35221fe5d3ae6b98
+	// Prep time stuff
+	lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
 }
 
-LevelTemplate::~LevelTemplate() {
-}
+LevelTemplate::~LevelTemplate() { }
 
 
 void LevelTemplate::update() {
+	//update time management stuff
+	Uint32 timeDiff = SDL_GetTicks() - lastUpdate;
+	dt = timeDiff / 1000.0;
+	lastUpdate = SDL_GetTicks();
+
 	// Check for input
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
@@ -24,6 +28,11 @@ void LevelTemplate::update() {
 			return;
 		}
 	}
+	
+	// Update level objects
+	for (GameObject *lo : lvlObjects) {
+		lo->update(dt);
+	}
 
 
 	// Monitor Mouse Coordinate
@@ -32,10 +41,14 @@ void LevelTemplate::update() {
 
 void LevelTemplate::render() {
 	// Render Background
-	//SDL_RenderCopy(Globals::renderer, backgroundTexture, NULL, &backgroundRect);
-
-	SDL_SetRenderDrawColor(Globals::renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawBlendMode(Globals::renderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(Globals::renderer, 10, 10, 10, 200);
 	SDL_RenderClear(Globals::renderer);
+
+	// Render all the Game Objects in the level
+	for (GameObject *lo : lvlObjects) {
+		lo->draw(false);
+	}
 
 	// Present all our renderings to the window when you have enough drawing stuffs
 	SDL_RenderPresent(Globals::renderer);

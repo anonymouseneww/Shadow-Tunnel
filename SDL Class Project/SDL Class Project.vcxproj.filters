@@ -37,6 +37,12 @@
     <Filter Include="Resource Files\Objects">
       <UniqueIdentifier>{37ca801b-df39-431b-9ade-d2cb7fb1ef50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Globals\Inputs">
+      <UniqueIdentifier>{cc53871b-db98-488c-99b4-05b42e439d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Globals\Inputs">
+      <UniqueIdentifier>{5c2efac8-d490-41f6-9a24-369db8f54057}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -46,12 +52,6 @@
       <Filter>Resource Files\Globals</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Resource Files\Globals</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Resource Files\Globals</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseHandler.cpp">
       <Filter>Resource Files\Globals</Filter>
     </ClCompile>
     <ClCompile Include="Vector.cpp">
@@ -87,6 +87,15 @@
     <ClCompile Include="PlayerSelectionScene.cpp">
       <Filter>Resource Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="MouseHandler.cpp">
+      <Filter>Resource Files\Globals\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Resource Files\Globals\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardHandler.cpp">
+      <Filter>Resource Files\Globals\Inputs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h">
@@ -95,13 +104,7 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files\Globals</Filter>
     </ClInclude>
-    <ClInclude Include="MouseHandler.h">
-      <Filter>Header Files\Globals</Filter>
-    </ClInclude>
     <ClInclude Include="Vector.h">
-      <Filter>Header Files\Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHandler.h">
       <Filter>Header Files\Globals</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
@@ -133,6 +136,15 @@
     </ClInclude>
     <ClInclude Include="PlayerSelectionScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Header Files\Globals\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseHandler.h">
+      <Filter>Header Files\Globals\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardHandler.h">
+      <Filter>Header Files\Globals\Inputs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
