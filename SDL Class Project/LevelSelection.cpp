@@ -117,6 +117,7 @@ void LevelSelection::update() {
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 			if (event.button.x >= lvl1Button->pos.x && event.button.x <= lvl1Button->pos.x + 370
 				&&
+<<<<<<< HEAD
 				event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 50) {
 				// Push scene for player to choose character
 				//Globals::gsm.pushScene(new PlayerSelectionScene());
