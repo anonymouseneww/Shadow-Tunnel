@@ -2,7 +2,6 @@
 #include <list>
 
 #include <SDL.h>
-#include <SDL_image.h>
 #include <SDL_ttf.h>
 
 #include "Globals.h"
@@ -10,14 +9,12 @@
 #include "GameObject.h"
 #include "Button.h"
 #include "Player.h"
+#include "Animation.h"
 
-#include "LevelTemplate.h"
-#include "PlayerSelectionScene.h"
-
-class LevelSelection : public GameScene {
+class PlayerSelectionScene : public GameScene {
 public:
-	LevelSelection();
-	~LevelSelection();
+	PlayerSelectionScene();
+	~PlayerSelectionScene();
 
 	//override those abstract methods inherited from GameScene
 	virtual void update();
@@ -25,23 +22,30 @@ public:
 	virtual bool onEnter();
 	virtual bool onExit();
 	virtual string getStateID() {
-		return "LevelSelectionScene";
+		return "PlayerSelectionScene";
 	}
 
 private:
-	Button *lvl1Button, *lvl2Button, *lvl3Button, *backButton;
+	Button *backButton, *c1Button, *c2Button, *c3Button;
 
 	TTF_Font *font;
 	SDL_Color fontColor;
 
-	SDL_Texture *backgroundTexture, *titleTexture, *lvl1ButtonTexture, *lvl2ButtonTexture, *lvl3ButtonTexture, *backButtonTexture;
-	SDL_Rect backgroundRect, titleRect, lvl1ButtonRect, lvl2ButtonRect, lvl3ButtonRect, backButtonRect;
+	SDL_Texture *titleTexture, *backButtonTexture;
+	SDL_Rect titleRect, backButtonRect, *c1ButtonRect, *c2ButtonRect, *c3ButtonRect;
 
-	// List of stuffs to render;
+	Player *character0, *character1, *character2;
+
+	// List of Objects to render
 	list<GameObject*> renderObjects;
+	list<GameObject*> playerObjects;
+
+	// Time related stuffs
+	Uint32 lastUpdate;
+	float dt;
 
 	// Input Handler for MenuScene
 	MouseHandler *mouseHandler;
 	Vector mousePos;
-
 };
+

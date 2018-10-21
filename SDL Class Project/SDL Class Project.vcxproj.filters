@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Scenes\Levels">
       <UniqueIdentifier>{b91314c1-236d-4a41-a0b9-960e047af0e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Objects">
+      <UniqueIdentifier>{dcf7f7f2-e05a-42be-8775-7fa9b0844e2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Objects">
+      <UniqueIdentifier>{37ca801b-df39-431b-9ade-d2cb7fb1ef50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -72,6 +78,15 @@
     <ClCompile Include="LevelTemplate.cpp">
       <Filter>Resource Files\Scenes\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Resource Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Resource Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSelectionScene.cpp">
+      <Filter>Resource Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h">
@@ -109,6 +124,15 @@
     </ClInclude>
     <ClInclude Include="LevelTemplate.h">
       <Filter>Header Files\Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSelectionScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

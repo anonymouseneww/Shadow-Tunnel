@@ -11,6 +11,7 @@
 #include "Button.h"
 
 #include "LevelSelection.h"
+#include "LeaderboardScene.h"
 
 class MenuScene : public GameScene {
 public:

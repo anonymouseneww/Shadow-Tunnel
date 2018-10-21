@@ -11,8 +11,10 @@ using namespace std;
 
 SDL_Window *window;
 SDL_Renderer *renderer;
+Uint32 lastUpdate;
+float dt;
 
-int initializeSDL() {
+int initialize() {
 	// Initialise SDL with all the subsystem coz im lazy
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		cout << "SDL failed to initialise" << endl;
@@ -62,7 +64,7 @@ int initializeSDL() {
 		cout << "renderer failed!" << endl;
 		return -1;
 	}
-
+	
 	// Point Global renderer to our renderer
 	Globals::renderer = renderer;
 
@@ -72,13 +74,9 @@ int initializeSDL() {
 }
 
 int main(int argc, char **argv){
-	// Initialize SDL System
-	initializeSDL();
+	// Initialize stuffs
+	initialize();
 	
-	// Current frame (0-3)
-	int currentFrame = 0;
-	float frameTimer = 0.083;
-
 	Globals::gsm.pushScene(new MenuScene());
 
 	bool loop = true;

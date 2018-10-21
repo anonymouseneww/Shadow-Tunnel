@@ -25,7 +25,7 @@ public:
 	}
 
 private:
-
+	SDL_Rect backgroundRect;
 
 	// List of stuffs to render;
 	list<GameObject*> renderObjects;

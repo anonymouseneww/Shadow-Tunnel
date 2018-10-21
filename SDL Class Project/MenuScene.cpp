@@ -1,15 +1,11 @@
 #include "MenuScene.h"
 
-
-
 MenuScene::MenuScene() {
 	// Add title image
 	backgroundRect = { 0, 0, 1600, 900 };
 	backgroundTexture = IMG_LoadTexture(Globals::renderer, "Assets/Menu_Background_2.png");
-	//titleRect = { 40, 100, 1000, 100 };
-	//titleTexture = IMG_LoadTexture(renderer, "Assets/Shadow_Tunnel_Title_2.png");
 
-	// Button default is (350 * 70), But it also takes two params Button(w, h);
+	// Button default is (370 * 50), But it also takes two params Button(w, h);
 	playButton = new Button();
 	playButton->setRenderer(Globals::renderer);
 	playButton->pos.x = 40;
@@ -124,6 +120,7 @@ void MenuScene::update() {
 				&&
 				event.button.y >= leaderboardButton->pos.y && event.button.y <= leaderboardButton->pos.y + 70) {
 				// Switch to "Leaderboard" Scene
+				Globals::gsm.pushScene(new LeaderboardScene());
 			}
 		}
 
@@ -138,14 +135,10 @@ void MenuScene::update() {
 			}
 		}
 	}
-
-
+	
 	// Monitor Mouse Coordinate
 	mousePos = mouseHandler->getMouseState();
 	//cout << "  Mouse Coordinate (" << mousePos.x << ", " << mousePos.y << ")\n";
-
-	
-
 }
 
 void MenuScene::render() {

@@ -1,6 +1,8 @@
 #include "LevelTemplate.h"
 
 LevelTemplate::LevelTemplate() {
+	// Setup level background
+	backgroundRect = {1600, 900, 0, 0};
 
 }
 

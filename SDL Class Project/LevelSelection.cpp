@@ -5,7 +5,7 @@ LevelSelection::LevelSelection() {
 	backgroundRect = { 0, 0, 1600, 900 };
 	backgroundTexture = IMG_LoadTexture(Globals::renderer, "Assets/Menu_Background_2.png");
 	
-	// Button default is (37 * 50), But it also takes two params Button(w, h);
+	// Button default is (370 * 50), But it also takes two params Button(w, h);
 	lvl1Button = new Button();
 	lvl1Button->setRenderer(Globals::renderer);
 	lvl1Button->pos.x = 40;
@@ -33,7 +33,7 @@ LevelSelection::LevelSelection() {
 	backButton->pos.y = 790;
 
 	renderObjects.push_back(backButton);
-
+	
 	// Setup the font and font color
 	font = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 32);
 	fontColor = { 220, 220, 220, 0 }; // RGBA
@@ -80,7 +80,7 @@ LevelSelection::LevelSelection() {
 
 
 	// Add back button font --------------------------------------------------------------------------------------------------------------------------------------------------------
-	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "Back to Menu", fontColor);
+	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "Back", fontColor);
 	backButtonTexture = SDL_CreateTextureFromSurface(Globals::renderer, exitTextSurface);
 	SDL_FreeSurface(exitTextSurface);
 
@@ -109,62 +109,57 @@ void LevelSelection::update() {
 		// Check if the window is closed
 		if (event.type == SDL_QUIT) {
 			Globals::quitGame = true;
+			Globals::gsm.clearAll();
 			return;
-		}
-
-		// Exit game when "Esc" is pressed
-		if (event.type == SDL_KEYDOWN) {
-			if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
-				Globals::quitGame = true;
-				return;
-			}
 		}
 
 		// Switch to Level 1 when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= lvl1Button->pos.x && event.button.x <= lvl1Button->pos.x + 400
+			if (event.button.x >= lvl1Button->pos.x && event.button.x <= lvl1Button->pos.x + 370
 				&&
-				event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 70) {
-				// Switch to "Level1" Scene
+				event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 50) {
+				// Push scene for player to choose character
+				//Globals::gsm.pushScene(new PlayerSelectionScene());
+				// then push anothe scene for level
+				Globals::gsm.pushScene(new LevelTemplate());
 			}
 		}
 
 		// Switch to Level 2 when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= lvl2Button->pos.x && event.button.x <= lvl2Button->pos.x + 400
+			if (event.button.x >= lvl2Button->pos.x && event.button.x <= lvl2Button->pos.x + 370
 				&&
-				event.button.y >= lvl2Button->pos.y && event.button.y <= lvl2Button->pos.y + 70) {
-				// Switch to "Level2" Scene
+				event.button.y >= lvl2Button->pos.y && event.button.y <= lvl2Button->pos.y + 50) {
+				// Push scene for player to choose character
+				//Globals::gsm.pushScene(new PlayerSelectionScene());
+				// then push anothe scene for level
 			}
 		}
 
 		// Switch to Level 3 when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= lvl3Button->pos.x && event.button.x <= lvl3Button->pos.x + 400
+			if (event.button.x >= lvl3Button->pos.x && event.button.x <= lvl3Button->pos.x + 370
 				&&
-				event.button.y >= lvl3Button->pos.y && event.button.y <= lvl3Button->pos.y + 70) {
-				// Switch to "Level3" Scene
+				event.button.y >= lvl3Button->pos.y && event.button.y <= lvl3Button->pos.y + 50) {
+				// Push scene for player to choose character
+				//Globals::gsm.pushScene(new PlayerSelectionScene());
+				// then push anothe scene for level
 			}
 		}
 
-		// Exit game when clicked "Exit Game" button
+		// Go back to last scene when clicked "Back" button
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-			if (event.button.x >= backButton->pos.x && event.button.x <= backButton->pos.x + 400
+			if (event.button.x >= backButton->pos.x && event.button.x <= backButton->pos.x + 370
 				&&
-				event.button.y >= backButton->pos.y && event.button.y <= backButton->pos.y + 70) {
+				event.button.y >= backButton->pos.y && event.button.y <= backButton->pos.y + 50) {
 				Globals::gsm.popScene();
 				return;
 			}
 		}
 	}
 
-
 	// Monitor Mouse Coordinate
 	mousePos = mouseHandler->getMouseState();
-	//cout << "  Mouse Coordinate (" << mousePos.x << ", " << mousePos.y << ")\n";
-
-
-
 }
 
 void LevelSelection::render() {

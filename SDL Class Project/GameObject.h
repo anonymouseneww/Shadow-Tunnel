@@ -1,10 +1,12 @@
 #pragma once
 #include <SDL.h>
+
+#include "Globals.h"
 #include "Vector.h"
 
 class GameObject {
 protected:
-	SDL_Renderer * renderer;
+	SDL_Renderer * renderer = Globals::renderer;
 
 public:
 	Vector pos;  // Position

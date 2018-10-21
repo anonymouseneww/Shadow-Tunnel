@@ -1,4 +1,8 @@
 #pragma once
+
+#include <SDL_image.h>
+
+#include "Globals.h"
 #include "GameObject.h"
 #include "Animation.h"
 
@@ -6,7 +10,7 @@ class Player :
 	public GameObject
 {
 public:
-	Player();
+	Player(int, int, int);
 	~Player();
 
 	void setAnimation(Animation *animation);
@@ -14,8 +18,11 @@ public:
 	virtual void draw();
 
 private:
+	SDL_Surface *animatedSurface;
+	SDL_Texture *playerTexture;
+
 	Animation *animation = NULL;
 	bool faceRight = true;
-	bool faceUp = true;
+	bool isActive = false;
 };
 
